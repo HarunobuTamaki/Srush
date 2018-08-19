@@ -14,6 +14,31 @@ public class PlayerMotion : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        animator.SetBool("Jump", Input.GetButtonDown("Jump"));
-	}
+
+        // animator.SetBool("Jump", Input.GetButton("Jump"));
+
+        //AnimatorStateInfo state = this.animator.GetCurrentAnimatorStateInfo(0);
+        //if (state.IsName("Jump"))
+        //{
+        //    animator.SetBool("Jump", false);
+        //    Debug.Log("False");
+        //}
+
+        AnimatorStateInfo state = this.animator.GetCurrentAnimatorStateInfo(0);
+        if (state.IsName("Damage"))
+        {
+            animator.SetBool("Hit", false);
+            Debug.Log("False");
+        }
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.tag == "Cube")
+        {
+            animator.SetBool("Hit", true);
+            Debug.Log("true");
+        }
+        
+    }
 }
