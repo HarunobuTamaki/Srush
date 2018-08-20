@@ -13,7 +13,15 @@ public class CubeController : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+
+        
         transform.Translate(speed * Time.deltaTime, 0, 0);
+
+        if (GameManager.score % 10 == 0 && GameManager.score != 0)
+        {
+            StartCoroutine("SpeedPlus");
+            Debug.Log("speed" + speed);
+        }
 
         if (transform.position.x < -15 || PlayerController.hitPoint ==0)
         {
@@ -28,5 +36,11 @@ public class CubeController : MonoBehaviour {
         {
             Destroy(gameObject);
         }
+    }
+
+    IEnumerator SpeedPlus()
+    {
+        speed -= 0.01f;
+        yield break;
     }
 }

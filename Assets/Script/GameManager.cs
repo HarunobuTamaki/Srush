@@ -6,23 +6,24 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour {
 
-    public static float score = 0;
-    int timer;
+    float timer;
+    public static int score;
     public Text scoreText;
+    public Text countText;
 
 	// Use this for initialization
 	void Start () {
-        
-	}
+        score = 0;
+        StartCoroutine("CountDown");
+    }
 	
 	// Update is called once per frame
 	void Update () {
-        timer = Mathf.FloorToInt(score);
+        
+        if (PlayerController.hitPoint != 0)
+            timer += Time.deltaTime;
+        score = Mathf.FloorToInt(timer);
 
-        if (timer % 10 == 0)
-            CubeController.speed -= 0.1f;
-        if(PlayerController.hitPoint!=0)
-        score += Time.deltaTime;
         if (PlayerController.hitPoint == 0)
             StartCoroutine("OverScene");
 
@@ -38,4 +39,34 @@ public class GameManager : MonoBehaviour {
         SceneManager.LoadScene("OverScene");
 
     }
+
+    IEnumerator CountDown()
+    {
+        for(int i = 3; i >= 0; i--)
+        {
+            switch (i)
+            {
+                case 3:
+                    countText.GetComponent<Text>().text =
+                        "3";
+                    break;
+                case 2:
+                    countText.GetComponent<Text>().text =
+                        "2";
+                    break;
+                case 1:
+                    countText.GetComponent<Text>().text =
+                        "1";
+                    break;
+                case 0:
+                    countText.GetComponent<Text>().text =
+                        "Start!";
+                        break;
+            }
+            yield return new WaitForSeconds(1.0f);
+            
+        }
+        countText.enabled = false;
+    }
+    
 }

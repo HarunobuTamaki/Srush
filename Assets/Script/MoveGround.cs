@@ -17,7 +17,6 @@ public class MoveGround : MonoBehaviour {
         transform.Translate(speed*Time.deltaTime, 0, 0);
         if (this.transform.position.x + size < 0)
         {
-            Debug.Log("out of display");
             this.transform.Translate(size * 2, 0, 0);
         }
 	}
