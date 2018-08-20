@@ -27,18 +27,24 @@ public class PlayerMotion : MonoBehaviour {
         AnimatorStateInfo state = this.animator.GetCurrentAnimatorStateInfo(0);
         if (state.IsName("Damage"))
         {
-            animator.SetBool("Hit", false);
+            animator.SetBool("Damage", false);
             Debug.Log("False");
         }
     }
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.tag == "Cube")
+        if (collision.gameObject.tag == "Cube" && PlayerController.hitPoint >0)
         {
-            animator.SetBool("Hit", true);
+            animator.SetBool("Damage", true);
+            Debug.Log("true");
+        }else if(collision.gameObject.tag == "Cube" && PlayerController.hitPoint == 0)
+        {
+            animator.SetBool("End", true);
             Debug.Log("true");
         }
-        
+
     }
+
+
 }

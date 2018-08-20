@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class OverManager : MonoBehaviour {
 
@@ -16,5 +17,9 @@ public class OverManager : MonoBehaviour {
 	void Update () {
         scoreText.GetComponent<Text>().text =
             string.Format("Score:" + "{0:0000}", GameManager.score);
+
+        if (Input.GetButtonDown("Jump"))
+            SceneManager.LoadScene("TitleScene");
+
 	}
 }

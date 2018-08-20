@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour {
 
@@ -22,10 +23,19 @@ public class GameManager : MonoBehaviour {
             CubeController.speed -= 0.1f;
         if(PlayerController.hitPoint!=0)
         score += Time.deltaTime;
+        if (PlayerController.hitPoint == 0)
+            StartCoroutine("OverScene");
 
         scoreText.GetComponent<Text>().text =
             string.Format("Score:"+"{0:0000}",score);
 
         
 	}
+
+    IEnumerator OverScene()
+    {
+        yield return new WaitForSeconds(2.0f);
+        SceneManager.LoadScene("OverScene");
+
+    }
 }
