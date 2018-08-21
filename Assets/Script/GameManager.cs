@@ -6,13 +6,16 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour {
 
-    float timer;
+    float timer=-3;
     public static int score;
     public Text scoreText;
     public Text countText;
+    public Camera startCamera;
+    public Camera startCamera2;
+    public Camera startCamera3;
 
-	// Use this for initialization
-	void Start () {
+    // Use this for initialization
+    void Start () {
         score = 0;
         StartCoroutine("CountDown");
     }
@@ -22,7 +25,8 @@ public class GameManager : MonoBehaviour {
         
         if (PlayerController.hitPoint != 0)
             timer += Time.deltaTime;
-        score = Mathf.FloorToInt(timer);
+        if(timer>0)
+            score = Mathf.FloorToInt(timer);
 
         if (PlayerController.hitPoint == 0)
             StartCoroutine("OverScene");
@@ -49,19 +53,25 @@ public class GameManager : MonoBehaviour {
                 case 3:
                     countText.GetComponent<Text>().text =
                         "3";
+                    startCamera.enabled = true;
                     break;
                 case 2:
                     countText.GetComponent<Text>().text =
                         "2";
+                    startCamera.enabled = false;
+                    startCamera2.enabled = true;
                     break;
                 case 1:
                     countText.GetComponent<Text>().text =
                         "1";
+                    startCamera2.enabled = false;
+                    startCamera3.enabled = true;
                     break;
                 case 0:
                     countText.GetComponent<Text>().text =
                         "Start!";
-                        break;
+                    startCamera3.enabled = false;
+                    break;
             }
             yield return new WaitForSeconds(1.0f);
             
