@@ -4947,7 +4947,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   scoreText: {fileID: 707627083}
-  countText: {fileID: 0}
+  countText: {fileID: 819617100}
 --- !u!1 &1354899447
 GameObject:
   m_ObjectHideFlags: 0
