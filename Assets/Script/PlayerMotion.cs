@@ -24,7 +24,9 @@ public class PlayerMotion : MonoBehaviour {
         //    Debug.Log("False");
         //}
 
+        //アニメーションの状態を取得
         AnimatorStateInfo state = this.animator.GetCurrentAnimatorStateInfo(0);
+        //もし状態がDamageだったらfalseにする
         if (state.IsName("Damage"))
         {
             animator.SetBool("Damage", false);
@@ -34,11 +36,14 @@ public class PlayerMotion : MonoBehaviour {
 
     private void OnCollisionEnter(Collision collision)
     {
+        //Cubeに当たりPlayerの体力がある場合はDamage状態
         if (collision.gameObject.tag == "Cube" && PlayerController.hitPoint >0)
         {
             animator.SetBool("Damage", true);
             Debug.Log("true");
-        }else if(collision.gameObject.tag == "Cube" && PlayerController.hitPoint == 0)
+        }
+        //Cubeに当たり体力がない場合はEnd状態
+        else if(collision.gameObject.tag == "Cube" && PlayerController.hitPoint == 0)
         {
             animator.SetBool("End", true);
             Debug.Log("true");

@@ -6,7 +6,7 @@ public class CubeGenerator : MonoBehaviour {
 
     float timer = 3; //生成間隔
 
-    public GameObject cube;
+    public GameObject cube; //生成オブジェクト
 
 	// Use this for initialization
 	void Start () {
@@ -15,9 +15,11 @@ public class CubeGenerator : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+        
         timer -= Time.deltaTime;
 
-        if (timer < 0)
+        //タイマーが0以下の時に生成する
+        if (timer < 0 && GameManager.score>0 && PlayerController.hitPoint!=0)
         {
             timer = 3;
             Instantiate(cube, new Vector3(10, Random.Range(-1.2f, 0), 6),Quaternion.identity);
