@@ -24,7 +24,7 @@ public class PlayerController : MonoBehaviour {
         CharacterController controller = GetComponent<CharacterController>();
         if (controller.isGrounded)
         {
-            if (Input.GetButtonDown("Jump"))
+            if (Input.GetButtonDown("Jump") && GameManager.score>0)
             {
                 moveDirection.y = jumpSpeed;
             }

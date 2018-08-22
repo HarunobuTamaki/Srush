@@ -40,7 +40,7 @@ public class CubeController : MonoBehaviour {
 
     IEnumerator SpeedPlus()
     {
+        yield return new WaitForSeconds(1.0f);
         speed -= 0.01f;
-        yield break;
     }
 }
