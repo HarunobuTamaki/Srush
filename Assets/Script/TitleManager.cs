@@ -5,6 +5,10 @@ using UnityEngine.SceneManagement;
 
 public class TitleManager : MonoBehaviour {
 
+    bool leaderBoardButton;
+    bool commentButton;
+    bool logOutButton;
+
 	// Use this for initialization
 	void Start () {
 		
@@ -16,4 +20,28 @@ public class TitleManager : MonoBehaviour {
             SceneManager.LoadScene("MainScene");
             
 	}
+
+    private void OnGUI()
+    {
+        DrawButton();
+        //ログアウトボタンが押されたら
+        if (logOutButton)
+            FindObjectOfType<UserAuth>().LogOut();
+
+        //ログアウト完了してたらログインメニューに戻る
+        if (FindObjectOfType<UserAuth>().CurrentPlayer() == null)
+        {
+            SceneManager.LoadScene("LogIn");
+        }
+    }
+
+    private void DrawButton()
+    {
+        //ボタンの設置
+        int btnW = 140, btnH = 50;
+        GUI.skin.button.fontSize = 18;
+        leaderBoardButton = GUI.Button(new Rect(0 * btnW, 0, btnW, btnH), "LeaderBoard");
+        commentButton = GUI.Button(new Rect(1* btnW, 0, btnW, btnH), "Comment");
+        logOutButton = GUI.Button(new Rect(2 * btnW, 0, btnW, btnH), "LogOut");
+    }
 }
