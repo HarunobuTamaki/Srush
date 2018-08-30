@@ -27,6 +27,9 @@ public class TitleManager : MonoBehaviour {
         //ログアウトボタンが押されたら
         if (logOutButton)
             FindObjectOfType<UserAuth>().LogOut();
+        //ランキングボタンが押されたら
+        if (leaderBoardButton)
+            SceneManager.LoadScene("LeaderBoard");
 
         //ログアウト完了してたらログインメニューに戻る
         if (FindObjectOfType<UserAuth>().CurrentPlayer() == null)

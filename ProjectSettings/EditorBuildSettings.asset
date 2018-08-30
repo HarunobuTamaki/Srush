@@ -12,8 +12,11 @@ EditorBuildSettings:
     path: Assets/TitleScene.unity
     guid: c9e2941347118bb4b82437d4cff2031c
   - enabled: 1
-    path: Assets/MainScene.unity
+    path: Assets/mainScene.unity
     guid: 7540eab4397561d4cb2a37cb06761818
   - enabled: 1
     path: Assets/OverScene.unity
     guid: d628b4f430e2fd249a754f0b6f2c26df
+  - enabled: 1
+    path: Assets/LeaderBoard.unity
+    guid: f35feec97c2df6a43bec2d9af70243e2
