@@ -10,6 +10,7 @@ public class GameManager : MonoBehaviour {
     public static int score; //スコア(別シーンで表示するためstaticで宣言)
     public Text scoreText; //スコア表示用テキスト
     public Text countText; //カウントダウン用テキスト
+    public Text lifeText; //ライフ用テキスト
     public Camera startCamera; //カウントダウン時カメラ
     public Camera startCamera2;//   〃    
     public Camera startCamera3;//   〃
@@ -40,6 +41,9 @@ public class GameManager : MonoBehaviour {
         //スコアを4桁で表示する
         scoreText.GetComponent<Text>().text =
             string.Format("Score:"+"{0:0000}",score);
+        //ライフを表示する
+        lifeText.GetComponent<Text>().text =
+            string.Format("LIFE:" + "{0}", PlayerController.hitPoint);
         
 	}
 
